@@ -1,7 +1,7 @@
 # tasks file
 ---
 - name: install
-  apt:
+  ansible.builtin.apt:
     name: "{{ sysfs_dependencies }}"
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
@@ -12,7 +12,7 @@
     - sysfs-install
 
 - name: validate actions
-  fail:
+  ansible.builtin.fail:
     msg: "Action {{ item.value.action }} is not supported"
   when:
     - item.value.action is defined
@@ -24,7 +24,7 @@
     - sysfs-validate
 
 - name: create (configuration) directory
-  file:
+  ansible.builtin.file:
     path: /etc/sysfs.d
     state: directory
     owner: root
@@ -38,7 +38,7 @@
     - sysfs-configuration-sysfs-d-directory
 
 - name: update specific configuration files
-  template:
+  ansible.builtin.template:
     src: etc/sysfs.d/sysfs.conf.j2
     dest: "/etc/sysfs.d/{{ item.key }}"
     owner: root
