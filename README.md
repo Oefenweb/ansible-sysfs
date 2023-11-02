@@ -29,7 +29,7 @@ None
 ---
 - hosts: all
   roles:
-    - sysfs
+    - oefenweb.sysfs
 ```
 
 ##### Advanced
@@ -38,7 +38,7 @@ None
 ---
 - hosts: all
   roles:
-    - sysfs
+    - oefenweb.sysfs
   vars:
     sysfs_sysfs_d_files:
       000-power-state.conf:
